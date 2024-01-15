@@ -1,0 +1,19 @@
+create table ai_sys_info (
+sno int not null primary key auto_increment,
+name varchar (200),
+error varchar (200),
+OS_name varchar (200));
+select * from ai_sys_info;
+delimiter ##
+drop procedure if exists sys_info; ##
+create procedure sys_info ( 
+in namepar varchar (200),
+in errorpar varchar (200),
+in OS_namepar varchar (200))
+begin
+insert into ai_sys_info (name,error,OS_name)
+values (namepar, errorpar, OS_namepar);
+end ##
+delimiter ;
+
+call sys_info ('Rooban','not working','windows 10 pro');
