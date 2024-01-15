@@ -1,0 +1,13 @@
+delimiter ##
+drop procedure if exists updates;##
+create procedure updates(
+in snopar int,
+in namepar varchar (200),
+in errorpar varchar (200),
+in OS_namepar varchar (200))
+begin
+update ai_sys_info set name=namepar, error=errorpar, OS_name=OS_namepar where sno=snopar;
+end ##
+delimiter ;
+
+call updates (4,'Yogarajan','not working','windows 8.1 pro');
