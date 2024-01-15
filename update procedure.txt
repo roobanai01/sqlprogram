@@ -1,0 +1,16 @@
+delimiter ##
+drop procedure if exists singleupdate; ##
+create procedure singleupdate (
+in tablename varchar (200),
+in columnname varchar (200),
+in valuechange varchar (200),
+in idname varchar (200),
+in snoparam int)
+begin
+set @statement=concat('update ', tablename,' set ', columnname,' = \'',valuechange, '\' ','where ', idname,'=', snoparam);
+prepare stmt from @statement;
+execute stmt;
+end ##
+delimiter ;
+
+call singleupdate('ai_sys_info', 'error', 'working', 'sno', 1);
