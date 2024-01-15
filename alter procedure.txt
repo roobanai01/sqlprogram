@@ -1,0 +1,14 @@
+delimiter ##
+drop procedure if exists alterupdate; ##
+create procedure alterupdate (
+in tablename varchar (200),
+in columnname varchar (200),
+in valuechange varchar (200))
+begin
+set @alterstatement=concat('alter table ',tablename,' rename column ',columnname, ' to ', valuechange);
+prepare stmt from @alterstatement;
+execute stmt;
+end ##
+delimiter ;
+
+call alterupdate('ai_sys_info', 'name', 'Students_Name'); 
