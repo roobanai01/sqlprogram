@@ -1,0 +1,14 @@
+delimiter ##
+drop procedure if exists deleteupdate; ##
+create procedure deleteupdate (
+in tablename varchar (200),
+in idname varchar (200),
+in snoparam int)
+begin
+set @deletestatement=concat('delete from ',tablename,' where ',idname,'=',snoparam);
+prepare stmt from @deletestatement;
+execute stmt;
+end ##
+delimiter ;
+
+call deleteupdate('ai_sys_info', 'sno', 1);
